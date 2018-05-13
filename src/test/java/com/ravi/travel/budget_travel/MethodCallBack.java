@@ -1,7 +1,14 @@
 package com.ravi.travel.budget_travel;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.function.Consumer;
-import java.util.function.Function;
 
 /**
  * https://www.callicoder.com/java-8-completablefuture-tutorial/
@@ -14,21 +21,50 @@ import java.util.function.Function;
  */
 public class MethodCallBack {
 
+    private static  Logger log = LoggerFactory.getLogger(MethodCallBack.class);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
+
+        ThreadFactory threadFactory = new ThreadFactory() {
+            ThreadFactory factory  = Executors.defaultThreadFactory();
+            AtomicLong atomicLong = new AtomicLong(0);
+            @Override
+            public Thread newThread(Runnable r) {
+
+
+               Thread thread = factory.newThread(r);
+               thread.setName("Budget_Travel_"+atomicLong.getAndIncrement());
+               return thread;
+            }
+        };
+
+
+        ExecutorService executorsService = Executors.newCachedThreadPool(threadFactory);
+        executorsService.submit(()->{
+            MDC.put("logFileName",Thread.currentThread().getName());
+
+            log.info(Thread.currentThread() + " In Executors ");
         Consumer<String> callBackFunc = MethodCallBack::callBackFunc;
-        useCallBack("Hello",callBackFunc);
+        useCallBack(callBackFunc);
+        });
+
+        Thread.sleep(5000);
+
+        executorsService.shutdown();
 
     }
 
 
 
-    private static void useCallBack(String param , Consumer<String> callBackFunc){
-        callBackFunc.accept("By useCallBack"+param);
+    private static void useCallBack(Consumer<String> callBackFunc){
+        log.info(Thread.currentThread() + " "+ "Hello");
+        callBackFunc.accept("By useCallBack"+ "Hello");
     }
 
     private static void callBackFunc(String param){
-        System.out.println("Call Back !!!! "+param);
+        log.info(Thread.currentThread() + " "+ param);
+        log.info("Call Back !!!! "+param);
+        MDC.remove("logFileName");
     }
 }
