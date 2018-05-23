@@ -23,6 +23,7 @@ public class RequestController {
 
     private final static Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
+
     @Autowired
     private ArticleService articleService ;
 

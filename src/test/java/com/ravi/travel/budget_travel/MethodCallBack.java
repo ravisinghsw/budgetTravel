@@ -48,6 +48,13 @@ public class MethodCallBack {
         Consumer<String> callBackFunc = MethodCallBack::callBackFunc;
         useCallBack(callBackFunc);
         });
+        executorsService.submit(()->{
+            MDC.put("logFileName",Thread.currentThread().getName());
+
+            log.info(Thread.currentThread() + " In Executors ");
+            Consumer<String> callBackFunc = MethodCallBack::callBackFunc;
+            useCallBack(callBackFunc);
+        });
 
         Thread.sleep(5000);
 
