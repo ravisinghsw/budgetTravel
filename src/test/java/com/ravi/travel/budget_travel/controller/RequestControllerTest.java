@@ -7,6 +7,7 @@ import io.restassured.http.ContentType;
 import io.restassured.internal.RestAssuredResponseImpl;
 import io.restassured.response.ExtractableResponse;
 import io.restassured.response.ValidatableResponseOptions;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,7 +26,8 @@ public class RequestControllerTest extends FunctionTestCase {
 
 
 
-
+    @Ignore
+    @Test
     public void getArticles() {
 
         ApiRequest request = new ApiRequest();
@@ -51,7 +53,7 @@ public class RequestControllerTest extends FunctionTestCase {
         System.out.println("Response recivied from api {}" +response.asString());
     }
 
-
+//@Ignore
     @Test
     public void getArticlesAsync() {
 

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 
-@Component
+//@Component
 public class ArticleRepository {
 
     private static AtomicLong count = new AtomicLong(0);

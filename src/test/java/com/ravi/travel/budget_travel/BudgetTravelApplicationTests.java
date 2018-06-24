@@ -7,6 +7,7 @@ import io.restassured.response.ResponseBody;
 import io.restassured.specification.RequestSenderOptions;
 import io.restassured.specification.RequestSpecification;
 import org.hamcrest.CoreMatchers;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,6 +23,7 @@ import static org.hamcrest.CoreMatchers.containsString;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT )
 public class BudgetTravelApplicationTests {
 
+	@Ignore
 	@Test
 	public void contextLoads() {
 		// Get the RequestSpecification of the request that you want to sent
@@ -34,7 +36,7 @@ public class BudgetTravelApplicationTests {
 		System.out.println("RESPONSE ::"+res);
 
 	}
-
+	@Ignore
 	@Test
 	public void testgetArticles(){
 

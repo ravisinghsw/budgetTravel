@@ -1,13 +1,23 @@
 package com.ravi.travel.budget_travel.domain;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "ARTICLE")
 public class Article {
 
+    @Id
+    @GeneratedValue
+    @Column(name = "ID")
     private Long id ;
 
+    @Column(name="Description")
     private String description;
 
+    @Column(name = "Author")
     private String author ;
 
+    @Column(name = "view_count")
     private Long viewCount;
 
     public Article(Long id, String description, String author, Long viewCount) {

@@ -63,7 +63,7 @@ public class RequestController {
         }
         log.info("Response Recivied {} ",response);
         log.info(" Waiting for 10mins ");
-        Thread.sleep(1000*60*10);
+        Thread.sleep(1000*30);
         return new ResponseEntity<ApiResponse>(response, HttpStatus.OK);
     }
 

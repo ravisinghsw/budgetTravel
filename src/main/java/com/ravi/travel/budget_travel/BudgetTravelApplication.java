@@ -4,12 +4,20 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.filter.HttpPutFormContentFilter;
 import org.springframework.web.filter.RequestContextFilter;
-
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+@EnableWebMvc
+@EnableSwagger2
 @SpringBootApplication
-public class BudgetTravelApplication {
+@EnableJpaRepositories
+public class BudgetTravelApplication  implements WebMvcConfigurer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BudgetTravelApplication.class, args);
@@ -35,4 +43,15 @@ public class BudgetTravelApplication {
 		bean.setEnabled(false);
 		return bean;
 	}*/
+
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("swagger-ui.html")
+				.addResourceLocations("classpath:/META-INF/resources/");
+		registry.addResourceHandler("**/**")
+				.addResourceLocations("classpath:/META-INF/resources/");
+
+		registry.addResourceHandler("**/webjars/**")
+				.addResourceLocations("classpath:/META-INF/resources/webjars/");
+	}
 }
