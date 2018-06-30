@@ -19,21 +19,5 @@ public class BlogsController {
 
     private final static Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-  /*  @Value("${multipart.location}")
-    private String location ;
 
-
-    @RequestMapping(value = "/upload" , method = RequestMethod.POST , produces = MediaType.IMAGE_GIF_VALUE)
-    public String upload(@RequestParam("file") String file , @RequestParam("start") int start ,
-                         @RequestParam("end") int end , @RequestParam("speed") int speed , @RequestParam("repeat") int repeat)
-    throws IOException {
-
-        log.info("File :"+file);
-        log.info("Start :"+start);
-        log.info("End :"+end);
-        log.info("Speed :"+speed);
-        log.info("repeat :"+repeat);
-        log.info("Saved file to {}");
-        return "";
-    }*/
 }

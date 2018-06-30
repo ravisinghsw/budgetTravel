@@ -1,7 +1,6 @@
 package com.ravi.travel.budget_travel.resources;
 
 
-import com.ravi.travel.budget_travel.controller.RequestApiController;
 import com.ravi.travel.budget_travel.domain.Article;
 import com.ravi.travel.budget_travel.handler.RequestHandler;
 import com.ravi.travel.budget_travel.service.ArticleService;
@@ -11,12 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
 import java.lang.invoke.MethodHandles;
 import java.util.List;
 
@@ -39,10 +34,16 @@ public class ArticleResource {
     }
 
     @GetMapping(value = "/articles/{author}")
-    public ResponseEntity<List<Article>> getArticles(@PathVariable("author")String author) throws InterruptedException {
-        log.info("Inside getArticles for "+author);
-        return new ResponseEntity<>( articleService.article(author), HttpStatus.OK);
+    public ResponseEntity<List<Article>> getArticles(@PathVariable("author") String author) throws InterruptedException {
+        log.info("Inside getArticles for " + author);
+        return new ResponseEntity<>(articleService.article(author), HttpStatus.OK);
 
+    }
+
+    @PostMapping(value = "/articles", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> articles(@RequestBody Article article) {
+        articleService.saveAndUpdateArticle(article);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 

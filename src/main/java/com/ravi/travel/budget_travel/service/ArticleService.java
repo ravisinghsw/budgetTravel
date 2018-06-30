@@ -46,4 +46,13 @@ public class ArticleService implements IArticleService {
         }
         return articles ;
     }
+
+    public void saveAndUpdateArticle(Article article){
+        try {
+            articleRepository.saveAndFlush(article);
+        }catch (Exception ex){
+            log.error("ERROR while save/update  article"+article,ex);
+            throw new RuntimeException("ERROR while save/update  article"+article);
+        }
+    }
 }
