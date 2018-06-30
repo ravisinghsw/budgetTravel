@@ -27,6 +27,10 @@ public class Article {
         this.viewCount = viewCount;
     }
 
+    public Article(){
+
+    }
+
     public Long getId() {
         return id;
     }

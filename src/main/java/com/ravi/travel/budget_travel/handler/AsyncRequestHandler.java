@@ -16,14 +16,14 @@ import java.util.stream.Collectors;
 
 
 @Component(value = "ASYNC")
-public class AsyncRequestHandler extends AbstractRequestHandler {
+public class AsyncRequestHandler  {
 
     private static Logger log = LoggerFactory.getLogger(AsyncRequestHandler.class);
 
     @Autowired
     private ArticleService articleService ;
 
-    @Override
+
     public ApiResponse executeReq(String type, Map<String, String> params) {
         log.info("Thread executeReq {}",Thread.currentThread());
         ApiResponse response = new ApiResponse();

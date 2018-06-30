@@ -22,7 +22,7 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-public class RequestControllerTest extends FunctionTestCase {
+public class ArticleResourceTest extends FunctionTestCase {
 
 
 

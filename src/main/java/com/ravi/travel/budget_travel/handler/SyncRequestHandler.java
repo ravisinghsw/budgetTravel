@@ -1,6 +1,5 @@
 package com.ravi.travel.budget_travel.handler;
 
-import com.ravi.travel.budget_travel.controller.RequestApiController;
 import com.ravi.travel.budget_travel.domain.Article;
 import com.ravi.travel.budget_travel.exception.ResourceNotFoundException;
 import com.ravi.travel.budget_travel.service.ArticleService;
@@ -16,14 +15,14 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Component(value = "SYNC")
-public class SyncRequestHandler extends AbstractRequestHandler{
+public class SyncRequestHandler {
 
     private static Logger log = LoggerFactory.getLogger(SyncRequestHandler.class);
 
     @Autowired
     private ArticleService articleService ;
 
-    @Override
+
     public ApiResponse executeReq(String type, Map<String, String> params) {
         log.info("Thread executeReq {}",Thread.currentThread());
         ApiResponse response = new ApiResponse();

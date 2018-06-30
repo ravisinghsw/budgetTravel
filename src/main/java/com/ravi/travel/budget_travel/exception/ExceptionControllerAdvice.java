@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class ExceptionControllerAdvice {
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorResponse> exceptionHandler(Exception ex){
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<ErrorResponse> exceptionHandler(RuntimeException ex){
         ErrorResponse error = new ErrorResponse();
         error.setErrorCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
-        error.setErrorMessage("Please Contact Dev Support Team !!");
-        return new ResponseEntity<>(error,HttpStatus.OK);
+        error.setErrorMessage(ex.getMessage() + "Please Contact Dev Support Team !!");
+        return new ResponseEntity<>(error,HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }
