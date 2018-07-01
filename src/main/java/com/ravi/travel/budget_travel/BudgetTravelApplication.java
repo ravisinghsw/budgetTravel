@@ -2,22 +2,21 @@ package com.ravi.travel.budget_travel;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.filter.HttpPutFormContentFilter;
 import org.springframework.web.filter.RequestContextFilter;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.*;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-@EnableWebMvc
+//@EnableWebMvc
 @EnableSwagger2
 @SpringBootApplication
 @EnableJpaRepositories
-public class BudgetTravelApplication  implements WebMvcConfigurer {
+public class BudgetTravelApplication  {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BudgetTravelApplication.class, args);
@@ -44,14 +43,5 @@ public class BudgetTravelApplication  implements WebMvcConfigurer {
 		return bean;
 	}*/
 
-	@Override
-	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("swagger-ui.html")
-				.addResourceLocations("classpath:/META-INF/resources/");
-		registry.addResourceHandler("**/**")
-				.addResourceLocations("classpath:/META-INF/resources/");
 
-		registry.addResourceHandler("**/webjars/**")
-				.addResourceLocations("classpath:/META-INF/resources/webjars/");
-	}
 }
