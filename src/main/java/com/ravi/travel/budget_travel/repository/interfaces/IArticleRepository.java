@@ -6,8 +6,12 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
-public interface IArticleRepository extends JpaRepository<Article,Long> {
+//@Repository
+public interface IArticleRepository/* extends JpaRepository<Article,Long>*/ {
 
     List<Article> findAllByAuthor(String author);
+
+    void saveAndFlush(Article article);
+
+    List<Article> findAll();
 }

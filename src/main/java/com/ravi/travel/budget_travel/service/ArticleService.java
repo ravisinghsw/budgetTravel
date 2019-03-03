@@ -19,8 +19,9 @@ public class ArticleService implements IArticleService {
 
     private final static Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    @Autowired
+    //@Autowired
     private IArticleRepository articleRepository ;
+    private ArticleRepository repository= new ArticleRepository();
 
     @Override
     public List<Article> articles() {
@@ -54,5 +55,9 @@ public class ArticleService implements IArticleService {
             log.error("ERROR while save/update  article"+article,ex);
             throw new RuntimeException("ERROR while save/update  article"+article);
         }
+    }
+
+    public Article getArticleByAuthorAndTitle() {
+       return repository.getArticleByTitleAndAuthor();
     }
 }

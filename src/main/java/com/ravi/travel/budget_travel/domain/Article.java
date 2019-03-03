@@ -1,76 +1,152 @@
 package com.ravi.travel.budget_travel.domain;
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.ravi.travel.budget_travel.utilities.ArticleType;
 
-@Entity
-@Table(name = "ARTICLE")
-@SequenceGenerator(name="ARTICLE_SEQ",initialValue = 10,allocationSize=1)
+import java.util.Date;
+
 public class Article {
 
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="ARTICLE_SEQ")
-    @Id
-    private Long id ;
 
-    @Column(name="Description")
-    private String description;
+    private int id;
 
-    @Column(name = "Author")
-    private String author ;
+    private String title;
 
-    @Column(name = "view_count")
-    private Long viewCount;
+    private ArticleType articleType;
 
-    public Article(Long id, String description, String author, Long viewCount) {
-        this.id = id;
-        this.description = description;
-        this.author = author;
-        this.viewCount = viewCount;
-    }
 
-    public Article(){
+    private Author author;
 
-    }
+    private Destination destination;
 
-    public Long getId() {
+    private ArticleDocument articleDocument;
+
+    private String articleBrief;
+
+    @JsonFormat (shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
+    private Date createdTime;
+
+    private Date modifiedTime;
+
+    private long articleReadCount;
+
+    private long upVote;
+
+    private long downVote;
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-
-    public String getDescription() {
-        return description;
+    public String getTitle() {
+        return title;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getAuthor() {
+    public ArticleType getArticleType() {
+        return articleType;
+    }
+
+    public void setArticleType(ArticleType articleType) {
+        this.articleType = articleType;
+    }
+
+    public Author getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(Author author) {
         this.author = author;
     }
 
-    public Long getViewCount() {
-        return viewCount;
+    public Destination getDestination() {
+        return destination;
     }
 
-    public void setViewCount(Long viewCount) {
-        this.viewCount = viewCount;
+    public void setDestination(Destination destination) {
+        this.destination = destination;
+    }
+
+    public ArticleDocument getArticleDocument() {
+        return articleDocument;
+    }
+
+    public void setArticleDocument(ArticleDocument articleDocument) {
+        this.articleDocument = articleDocument;
+    }
+
+    public String getArticleBrief() {
+        return articleBrief;
+    }
+
+    public void setArticleBrief(String articleBrief) {
+        this.articleBrief = articleBrief;
+    }
+
+    public Date getCreatedTime() {
+        return createdTime;
+    }
+
+    public void setCreatedTime(Date createdTime) {
+        this.createdTime = createdTime;
+    }
+
+    public Date getModifiedTime() {
+        return modifiedTime;
+    }
+
+    public void setModifiedTime(Date modifiedTime) {
+        this.modifiedTime = modifiedTime;
+    }
+
+    public long getArticleReadCount() {
+        return articleReadCount;
+    }
+
+    public void setArticleReadCount(long articleReadCount) {
+        this.articleReadCount = articleReadCount;
+    }
+
+    public long getUpVote() {
+        return upVote;
+    }
+
+    public void setUpVote(long upVote) {
+        this.upVote = upVote;
+    }
+
+    public long getDownVote() {
+        return downVote;
+    }
+
+    public void setDownVote(long downVote) {
+        this.downVote = downVote;
     }
 
     @Override
     public String toString() {
         return "Article{" +
                 "id=" + id +
-                ", description='" + description + '\'' +
-                ", author='" + author + '\'' +
-                ", viewCount=" + viewCount +
+                ", title='" + title + '\'' +
+                ", articleType=" + articleType +
+                ", author=" + author +
+                ", destination=" + destination +
+                ", articleDocument=" + articleDocument +
+                ", articleBrief='" + articleBrief + '\'' +
+                ", createdTime='" + createdTime + '\'' +
+                ", modifiedTime=" + modifiedTime +
+                ", articleReadCount=" + articleReadCount +
+                ", upVote=" + upVote +
+                ", downVote=" + downVote +
                 '}';
     }
 }
+

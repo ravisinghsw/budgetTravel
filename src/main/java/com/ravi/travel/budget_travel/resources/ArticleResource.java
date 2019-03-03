@@ -33,17 +33,24 @@ public class ArticleResource {
         return new ResponseEntity<>(articleService.articles(), HttpStatus.OK);
     }
 
-    @GetMapping(value = "/articles/{author}")
+   /* @GetMapping(value = "/articles/{author}")
     public ResponseEntity<List<Article>> getArticles(@PathVariable("author") String author) throws InterruptedException {
         log.info("Inside getArticles for " + author);
         return new ResponseEntity<>(articleService.article(author), HttpStatus.OK);
 
-    }
+    }*/
 
     @PostMapping(value = "/articles", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> articles(@RequestBody Article article) {
         articleService.saveAndUpdateArticle(article);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/articles/{article_title}")
+    public ResponseEntity<Article> getArticleByAuthorAndTitle(@PathVariable("article_title") String articleTitle) throws InterruptedException {
+        log.info("Inside getArticles for " + articleTitle);
+        return new ResponseEntity<>(articleService.getArticleByAuthorAndTitle(), HttpStatus.OK);
+
     }
 
 

@@ -29,11 +29,11 @@ public class SyncRequestHandler {
         List<Article> authorList = articleService.article(params.get("name")) ;
         if(CollectionUtils.isEmpty(authorList)){
             throw new ResourceNotFoundException(" No Article Found of Author :"+params.get("name")) ;
-        }
-        Map<String,String> res = authorList.stream().collect(Collectors.toMap(Article::getAuthor ,
+        };;
+      /*  Map<String,String> res = authorList.stream().collect(Collectors.toMap(Article::getAuthor ,
                 Article::getDescription));
         response.setStatus("SUCCESS");
-        response.setResponseParams(res);
+        response.setResponseParams(res);*/
         response.setErrorDesc("NA");
         return response;
     }

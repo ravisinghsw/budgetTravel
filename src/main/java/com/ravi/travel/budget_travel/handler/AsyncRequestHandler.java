@@ -38,10 +38,10 @@ public class AsyncRequestHandler  {
         if(CollectionUtils.isEmpty(authorList)){
             throw new ResourceNotFoundException(" No Article Found of Author :"+params.get("name")) ;
         }
-        Map<String,String> res = authorList.stream().collect(Collectors.toMap(Article::getAuthor ,
-                Article::getDescription));
+        /*Map<String,String> res = authorList.stream().collect(Collectors.toMap(Article::getAuthor ,
+                Article::getDescription));*/
         response.setStatus("SUCCESS FROM ASYNC");
-        response.setResponseParams(res);
+        //response.setResponseParams(res);
         response.setErrorDesc("NA");
         return response;
     }

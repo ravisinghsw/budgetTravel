@@ -28,6 +28,7 @@ import java.util.Map;
 
 import static org.junit.Assert.*;
 
+@Ignore
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class ArticleResourceTest extends FunctionTestCase {
@@ -65,9 +66,9 @@ public class ArticleResourceTest extends FunctionTestCase {
     @Test
     public void testSaveArticle() throws InterruptedException {
         Article article = new Article();
-        article.setAuthor("jai");
+       /* article.setAuthor("jai");
         article.setDescription("Delhi Darshan");
-        article.setViewCount(0L);
+        article.setViewCount(0L);*/
         ValidatableResponseOptions resp = RestAssured.given()
                 .body(article)
                 .contentType(ContentType.JSON)
